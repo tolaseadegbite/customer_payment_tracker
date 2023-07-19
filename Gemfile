@@ -73,3 +73,9 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "annotate", "~> 3.2"
+
+gem "devise", "~> 4.9"
+
+gem "simple_form", "~> 5.2"
