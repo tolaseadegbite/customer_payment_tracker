@@ -19,7 +19,10 @@
 #
 class Customer < ApplicationRecord
   validates_presence_of :name, :phone_number
+
   belongs_to :user
+  
+  has_many :product_item_dates, dependent: :destroy
 
   scope :ordered, -> { order(created_at: :desc) }
 end
