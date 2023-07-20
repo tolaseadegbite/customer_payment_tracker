@@ -12,10 +12,12 @@
 @import "components/form";
 @import "components/btn";
 @import "components/customer";
+@import "components/flash";
 
 // Config
 @import "config/variable";
 @import "config/reset";
+@import "config/animation";
 
 // Layouts
 @import "layout/header";
