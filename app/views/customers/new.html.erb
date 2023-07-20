@@ -1,0 +1,11 @@
+<main class="container">
+    <%= link_to sanitize("&larr; Back to customers"), customers_path %>
+
+    <div class="header">
+        <h1>New customer</h1>
+    </div>
+
+    <%= turbo_frame_tag @customer do %>
+        <%= render "form", customer: @customer %>
+    <% end %>
+</main>

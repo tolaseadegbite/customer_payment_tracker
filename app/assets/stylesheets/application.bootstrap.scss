@@ -1,2 +1,34 @@
+// Bootstrap
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+// Mixins
+@import "mixins/media";
+
+// Components
+@import "components/form";
+@import "components/btn";
+@import "components/customer";
+
+// Config
+@import "config/variable";
+@import "config/reset";
+
+// Layouts
+@import "layout/header";
+
+
+body {
+    background-color: #fdf5ff;
+}
+
+// .form span {
+//     display: inline-block;
+// }
+
+.container {
+    max-width: 60rem;
+}

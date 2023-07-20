@@ -1,0 +1,21 @@
+<%= simple_form_for customer, wrapper: :inline_form, html: { class: "customer form" } do |f| %>
+    <%= f.error_notification %>
+    <div class="row row-cols-auto">
+        <div class="col form-col-1">
+            <%= f.input :name, input_html: { autofocus: true, placeholder: 'Customer name' }, label: false %>
+        </div>
+        <div class="col form-col-2">
+            <%= f.input :phone_number, input_html: { autofocus: true, placeholder: 'Phone number' }, label: false %>
+        </div>
+        <div class="col form-col">
+            <%= link_to customers_path, class: "butn butn--light" do %>
+                <%= image_tag "x.png", width: "15" %>
+            <% end %>
+        </div>
+        <div class="col form-col">
+            <%= button_tag type: 'submit', class: "butn butn--secondary" do %>
+                <%= image_tag "check.png", size: "25" %>
+            <% end %>
+        </div>
+    </div>
+<% end %>

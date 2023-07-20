@@ -18,5 +18,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Customer < ApplicationRecord
+  validates_presence_of :name, :phone_number
   belongs_to :user
+
+  scope :ordered, -> { order(created_at: :desc) }
 end
