@@ -6,7 +6,7 @@ class CustomersController < ApplicationController
     end
 
     def show
-        
+        @product_item_dates = @customer.product_item_dates.ordered
     end
 
     def new

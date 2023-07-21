@@ -2,11 +2,24 @@
     .col {
         padding: 0 .25em;
     }
+}
+
+.customer {
     .form-col-1 {
         width: 50%;
     }
     .form-col-2 {
         // width: 35.3%;
-        width: 36%;
+        width: 35%;
     }
+}
+
+.product-item-date {
+    .form-col-1 {
+        width: 86%;
+    }
+    // .form-col-2 {
+    //     // width: 35.3%;
+    //     width: 36%;
+    // }
 }

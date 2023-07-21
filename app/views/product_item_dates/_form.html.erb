@@ -1,0 +1,19 @@
+<%= simple_form_for [customer, product_item_date], html: { class: "form product-item-date" } do |f| %>
+    <%= f.error_notification %>
+
+    <div class="row row-cols-auto">
+        <div class="col form-col-1">
+            <%= f.input :date, html5: true, input_html: { autofocus: true }, label: false %>
+        </div>
+        <div class="col form-col">
+            <%= link_to customer_path(@customer), class: "butn butn--light" do %>
+                <%= image_tag "x.png", width: "17" %>
+            <% end %>
+        </div>
+        <div class="col form-col">
+            <%= button_tag type: 'submit', class: "butn butn--secondary" do %>
+                <%= image_tag "check.png", size: "17" %>
+            <% end %>
+        </div>
+    </div>
+<% end %>
