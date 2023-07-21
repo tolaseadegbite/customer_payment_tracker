@@ -23,6 +23,8 @@ class ProductItemDate < ApplicationRecord
   validates_presence_of :date, uniqueness: { scope: :customer_id, message: "Date has been created" }
   scope :ordered, -> { order(date: :asc) }
 
+  has_many :product_items, dependent: :destroy
+
   def previous_date
     customer.product_item_dates.ordered.where("date < ?", date).last
   end
