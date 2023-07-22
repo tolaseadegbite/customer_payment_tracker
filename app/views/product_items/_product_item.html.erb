@@ -1,0 +1,33 @@
+<%= turbo_frame_tag product_item do %>
+    <div class="line-item">
+        <div class="line-item__name">
+            <%= product_item.name %>
+            <div class="line-item__description">
+                <%= simple_format product_item.description %>
+            </div>
+            <div class="line-item__payment_status">
+                <span class="text-info">Payment status:</span> <span class="fw-normal"><%= product_item.payment_status %></span>
+            </div>
+        </div>
+        <div class="line-item__quantity-price">
+            <%= product_item.quantity %>
+            &times;
+            <%= number_to_currency(product_item.unit_price, unit: "₦") %>
+        </div>
+        <div class="line-item__quantity">
+            <%= product_item.quantity %>
+        </div>
+        <div class="line-item__price">
+            <%= number_to_currency(product_item.unit_price, unit: "₦") %>
+        </div>
+        <div class="line-item__actions">
+            <%= button_to [customer, product_item_date, product_item], method: :delete, class: "btn btn--light" do %>
+                <%= image_tag "delete.png", size: "25" %>
+            <% end %>
+
+            <%= link_to [:edit, customer, product_item_date, product_item], class: "btn btn--light" do %>
+                <%= image_tag "edit.png", size: "25" %>
+            <% end %>
+        </div>
+    </div>
+<% end %>

@@ -16,5 +16,28 @@
           </div>
         </div>
       <% end %>
+
+      <div class="line-item-date__body">
+        <div class="line-item line-item--header">
+          <div class="line-item__name">Article</div>
+          <div class="line-item__quantity">Quantity</div>
+          <div class="line-item__price">Price</div>
+          <div class="line-item__actions"></div>
+        </div>
+
+        <%= turbo_frame_tag nested_dom_id(product_item_date, "product_items") do %>
+            <%= render product_item_date.product_items, customer: customer, product_item_date: product_item_date %>
+        <% end %>
+
+        <%= turbo_frame_tag nested_dom_id(product_item_date, ProductItem.new) %>
+
+        <div class="line-item-date__footer">
+          <%= link_to "Add item",
+                      [:new, customer, product_item_date, :product_item],
+                      data: { turbo_frame: nested_dom_id(product_item_date, ProductItem.new) },
+                      class: "butn butn--primary" %>
+        </div>
+      </div>
+
     </div>
 <% end %>

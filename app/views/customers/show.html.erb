@@ -18,3 +18,7 @@
     <%= render @product_item_dates, customer: @customer %>
   <% end %>
 </main>
+
+<%= turbo_frame_tag dom_id(@customer, :total) do %>
+  <%= render "customers/total", customer: @customer %>
+<% end %>

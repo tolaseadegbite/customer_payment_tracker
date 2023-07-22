@@ -6,7 +6,7 @@ class CustomersController < ApplicationController
     end
 
     def show
-        @product_item_dates = @customer.product_item_dates.ordered
+        @product_item_dates = @customer.product_item_dates.includes(:product_items).ordered
     end
 
     def new

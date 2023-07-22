@@ -20,7 +20,9 @@
 #
 class ProductItemDate < ApplicationRecord
   belongs_to :customer
+  
   validates_presence_of :date, uniqueness: { scope: :customer_id, message: "Date has been created" }
+  
   scope :ordered, -> { order(date: :asc) }
 
   has_many :product_items, dependent: :destroy

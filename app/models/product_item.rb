@@ -39,4 +39,8 @@ class ProductItem < ApplicationRecord
   def total_price
     quantity * unit_price
   end
+
+  def unpaid_price
+    where(payment_status: 'unpaid').total_price
+  end
 end

@@ -1,0 +1,10 @@
+<footer class="customer-total">
+  <div class="row" style="max-width: 60rem; margin: 0 auto;">
+    <div class="col-4">
+      <h6>Total: <%= number_to_currency(customer.total_price, unit: "₦") %></h6>
+    </div>
+    <div class="col-4">
+      <h6>Total Outstanding: <%= number_to_currency(customer.unpaid_price, unit: "₦") %></h6>
+    </div>
+  </div>
+</footer>

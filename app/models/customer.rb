@@ -22,7 +22,18 @@ class Customer < ApplicationRecord
 
   belongs_to :user
   
-  has_many :product_item_dates, dependent: :destroy
+  has_many :product_item_dates, dependent: :destroy  
+  
+  has_many :product_items, through: :product_item_dates
+
 
   scope :ordered, -> { order(created_at: :desc) }
+
+  def total_price
+    product_items.sum(&:total_price)
+  end
+
+  def unpaid_price
+    product_items.where(payment_status: 'unpaid').sum(&:total_price)
+  end
 end

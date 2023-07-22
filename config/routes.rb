@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   
   resources :customers do
-    resources :product_item_dates, except: [:index, :show]
+    resources :product_item_dates, except: [:index, :show] do
+      resources :product_items, except: [:index, :show]
+    end
   end
 end
-
