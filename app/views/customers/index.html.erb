@@ -4,7 +4,11 @@
         <span><%= link_to "Add customer", new_customer_path, class: "butn butn--primary", data: { turbo_frame: dom_id(Customer.new) } %></span>
     </div>
 
-    <%= turbo_frame_tag Customer.new %>
+    <%= turbo_frame_tag Customer.new do %>
+        <% if @customers.none? %>
+            <%= render "customers/empty_state" %>
+        <% end %>
+    <% end %>
 
     <%= turbo_frame_tag "customers" do %>
         <div class="row">
