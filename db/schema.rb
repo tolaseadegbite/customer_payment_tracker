@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_21_151956) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_23_145801) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_151956) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_customers_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.decimal "amount", precision: 10, scale: 2
+    t.bigint "product_item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "date"
+    t.index ["product_item_id"], name: "index_payments_on_product_item_id"
   end
 
   create_table "product_item_dates", force: :cascade do |t|
@@ -58,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_151956) do
   end
 
   add_foreign_key "customers", "users"
+  add_foreign_key "payments", "product_items"
   add_foreign_key "product_item_dates", "customers"
   add_foreign_key "product_items", "product_item_dates"
 end

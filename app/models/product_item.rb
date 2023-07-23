@@ -23,6 +23,9 @@
 class ProductItem < ApplicationRecord
   belongs_to :product_item_date
 
+  has_many :payments, dependent: :destroy
+  accepts_nested_attributes_for :payments, reject_if: :all_blank, allow_destroy: true
+
   enum :payment_status, {
     unpaid: 0,
     paying: 1,
@@ -36,11 +39,25 @@ class ProductItem < ApplicationRecord
 
   delegate :customer, to: :product_item_date
 
+  def has_paid
+    payments.sum(&:amount)
+  end
+  
   def total_price
     quantity * unit_price
   end
-
+  
   def unpaid_price
     where(payment_status: 'unpaid').total_price
+  end
+  
+  def percentage_paid
+    if payment_status == 'paying'
+      (has_paid/total_price) * 100
+    elsif payment_status == 'paid'
+      puts '100'
+    else
+      puts '0'
+    end
   end
 end

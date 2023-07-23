@@ -5,6 +5,7 @@ class ProductItemsController < ApplicationController
   
     def new
       @product_item = @product_item_date.product_items.build
+      @product_item.payments.build
     end
   
     def create
@@ -21,6 +22,7 @@ class ProductItemsController < ApplicationController
     end
 
     def edit
+      @product_item.payments.build
     end
   
     def update
@@ -50,7 +52,7 @@ class ProductItemsController < ApplicationController
     end
   
     def product_item_params
-      params.require(:product_item).permit(:name, :description, :quantity, :unit_price, :payment_status)
+      params.require(:product_item).permit(:name, :description, :quantity, :unit_price, :payment_status, payments_attributes: [:id, :_destroy, :amount, :date])
     end
   
     def set_customer

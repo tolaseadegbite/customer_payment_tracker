@@ -5,4 +5,4 @@ export default class extends NestedForm {
     super.connect()
     console.log('Do what you want here.')
   }
-}
+} 

@@ -1,13 +1,43 @@
 <%= turbo_frame_tag product_item do %>
     <div class="line-item">
         <div class="line-item__name">
-            <%= product_item.name %>
+            <h6>&#8212; <%= product_item.name %></h6>
             <div class="line-item__description">
                 <%= simple_format product_item.description %>
             </div>
             <div class="line-item__payment_status">
                 <span class="text-info">Payment status:</span> <span class="fw-normal"><%= product_item.payment_status %></span>
             </div>
+
+            <div class="sub-header py-2" style="color:hsl(302, 90%, 27%);">
+                Percentage paid: <%= product_item.percentage_paid %>%
+            </div>
+            
+            <% unless !(product_item.payment_status == 'paying') %>
+
+                <div class="line-item-payment py-2">
+                    <div class="sub-header" style="color:hsl(302, 90%, 27%);">
+                        Payment history: (<%= number_to_currency(product_item.has_paid, unit: "₦") %> / <%= number_to_currency(product_item.total_price, unit: "₦") %>)
+                    </div>
+                    
+                    <table class="table table-bordered table-rounded rounded my-3 w-100">
+                        <thead>
+                            <tr>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Date Paid</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% product_item.payments.each do |p| %>
+                                <tr class="fw-normal">
+                                    <td><%= number_to_currency(p.amount, unit: "₦") %></td>
+                                    <td><%= l(p.date, format: :long) %></td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            <% end %>
         </div>
         <div class="line-item__quantity-price">
             <%= product_item.quantity %>
@@ -21,13 +51,14 @@
             <%= number_to_currency(product_item.unit_price, unit: "₦") %>
         </div>
         <div class="line-item__actions">
-            <%= button_to [customer, product_item_date, product_item], method: :delete, class: "btn btn--light" do %>
+            <%= button_to [customer, product_item_date, product_item], method: :delete, class: "butn butn--light" do %>
                 <%= image_tag "delete.png", size: "25" %>
             <% end %>
 
-            <%= link_to [:edit, customer, product_item_date, product_item], class: "btn btn--light" do %>
+            <%= link_to [:edit, customer, product_item_date, product_item], class: "butn butn--light" do %>
                 <%= image_tag "edit.png", size: "25" %>
             <% end %>
         </div>
+
     </div>
 <% end %>
