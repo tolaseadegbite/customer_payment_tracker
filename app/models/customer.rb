@@ -34,8 +34,13 @@ class Customer < ApplicationRecord
     product_items.sum(&:total_price)
   end
 
-  def unpaid_price
+  def unpaid
     # product_items.where(payment_status: 'unpaid').sum(&:total_price)
     product_items.sum(&:outstanding_price)
+  end
+
+  def paid
+    total_paid = product_items.where(payment_status: 'paid').sum(&:total_price) + product_items.sum(&:has_paid)
+    return total_paid
   end
 end
