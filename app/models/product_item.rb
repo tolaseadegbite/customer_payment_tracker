@@ -50,14 +50,20 @@ class ProductItem < ApplicationRecord
   def unpaid_price
     where(payment_status: 'unpaid').total_price
   end
+
+  def outstanding_price
+    return 0 if payment_status == 'paid'
+    total_price - has_paid
+  end
   
   def percentage_paid
     if payment_status == 'paying'
-      (has_paid/total_price) * 100
+      percentage = (has_paid/total_price) * 100 
+      return percentage.round
     elsif payment_status == 'paid'
-      puts '100'
+      100
     else
-      puts '0'
+      0
     end
   end
 end

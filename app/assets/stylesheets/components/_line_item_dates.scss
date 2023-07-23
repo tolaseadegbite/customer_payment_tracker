@@ -28,7 +28,8 @@
   
     &__body {
       border-radius: var(--border-radius);
-      background-color: var(--color-white);
+      // background-color: var(--color-white);
+      background-color: hsl(302.95deg 34.65% 48.54%);
       box-shadow: var(--shadow-small);
       margin-top: var(--space-xs);
       padding: var(--space-xxs);

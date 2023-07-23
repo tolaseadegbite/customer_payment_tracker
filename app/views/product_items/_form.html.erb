@@ -6,17 +6,9 @@
   <%= f.input :name, wrapper_html: { class: "line-item__name" }, placeholder: "Enter product name", label: false, input_html: { autofocus: true } %>
   <%= f.input :quantity, wrapper_html: { class: "line-item__quantity" }, label: false, placeholder: "Quantity" %>
   <%= f.input :unit_price, wrapper_html: { class: "line-item__price" }, placeholder: "Price", label: false %>
-  <%= f.input :description, wrapper_html: { class: "line-item__description" }, placeholder: "Product description", label: false %>
-  <%= f.input :payment_status, as: :select, collection: ProductItem.payment_statuses.keys, include_blank: "Select payment status", wrapper_html: { class: "line-item__description" }, label: false %>
-
-  
-  <div class="line-item__actions align-items-center">
-    <%= link_to customer_path(customer), class: "butn butn--light" do %>
-        <%= image_tag "x.png", width: "19" %>
-    <% end %>
-    <%= button_tag type: 'submit', class: "butn butn--secondary" do %>
-        <%= image_tag "check.png", size: "19" %>
-    <% end %>
+  <div class="d-block w-100">
+    <%= f.input :description, wrapper_html: { class: "line-item__description mb-2" }, placeholder: "Product description", label: false %>
+    <%= f.input :payment_status, as: :select, collection: ProductItem.payment_statuses.keys, include_blank: "Select payment status", wrapper_html: { class: "line-item__description" }, label: false %>
   </div>
 
   <div class="d-block w-100 mt-3">
@@ -40,6 +32,16 @@
   <!-- Inserted elements will be injected before that target. -->
   <div data-nested-form-target="target"></div>
   
-  <button type="button" class="butn butn--secondary" data-action="nested-form#add">Add payment</button>
+  <button type="button" class="butn butn--secondary w-100" data-action="nested-form#add">Add payment</button>
+
+  <div class="line-item__actions align-items-center">
+    <%= link_to customer_path(customer), class: "butn butn--light" do %>
+        <%#= image_tag "x.png", width: "19" %>
+        Cancel
+    <% end %>
+    <%= button_tag type: 'submit', class: "butn butn--secondary" do %>
+        Submit
+    <% end %>
+  </div>
 
 <% end %>
