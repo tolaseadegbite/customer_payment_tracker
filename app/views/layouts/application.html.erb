@@ -11,10 +11,7 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= current_user.email %> | 
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-    <% end %>
+    <%= render 'layouts/navbar' %>
     <div id="flash" class="flash">
       <%= render "layouts/flash" %>
     </div>

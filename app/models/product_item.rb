@@ -40,6 +40,7 @@ class ProductItem < ApplicationRecord
   delegate :customer, to: :product_item_date
 
   def has_paid
+    return total_price if payment_status == 'paid'
     payments.sum(&:amount)
   end
   

@@ -6,7 +6,9 @@
   
     gap: var(--space-xs);
     margin-bottom: var(--space-s);
-    padding: var(--space-xs);
+    // padding: var(--space-xs);
+    box-shadow: var(--shadow-small);
+    padding: 0.9rem;
     border-radius: var(--border-radius);
   
     > * {
