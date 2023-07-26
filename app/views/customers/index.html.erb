@@ -3,6 +3,13 @@
         <h1>Customers</h1>
         <span><%= link_to "Add customer", new_customer_path, class: "butn butn--primary", data: { turbo_frame: dom_id(Customer.new) } %></span>
     </div>
+    
+    <div class="header search">
+        <form class="d-block w-100" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search customer" aria-label="Search">
+            <!--<button class="btn btn-outline-success" type="submit">Search</button>-->
+        </form>
+    </div>
 
     <%= turbo_frame_tag Customer.new do %>
         <% if @customers.none? %>
