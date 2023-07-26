@@ -23,3 +23,19 @@
     //     width: 36%;
     // }
 }
+
+.form-control, .form-select {
+    border-color: #f8bbff;
+    border-width: 3px;
+}
+
+.form-control:focus, .form-select:valid:focus {
+    box-shadow: none;
+    border: 3px solid var(--color-purple);
+}
+
+@include media-breakpoint-up(sm) {
+    .form-control {
+        margin-bottom: 1rem;
+    }
+}
