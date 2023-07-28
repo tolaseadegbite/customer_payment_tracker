@@ -1,0 +1,36 @@
+<form class="d-block w-100 disabled" role="search">
+    <input class="form-control me-2" type="search" placeholder="Search customer" aria-label="Search" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer">
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Search customer</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <%= simple_form_for "", url: search_path, method: :get, wrapper: :inline_form, html: { class: "form" } do |f| %>
+                    <%= f.error_notification %>
+                    <div class="row">
+                        <div class="col-12">
+                            <%= f.input :name, input_html: { autofocus: true, placeholder: 'Customer name' }, label: false %>
+                        </div>
+
+                        <div class="col-12">
+                            <%= f.input :payment_status, as: :select, collection: ProductItem.payment_statuses.keys, include_blank: "Select payment status", wrapper_html: { class: "line-item__description" }, label: false %>
+                        </div>
+
+                        <div class="col-12 text-end">
+                            <%= button_tag type: 'submit', class: "butn butn--primary" do %>
+                                Search
+                                <i class="bi bi-search"></i>
+                            <% end %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

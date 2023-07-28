@@ -29,6 +29,10 @@ class Customer < ApplicationRecord
 
   scope :ordered, -> { order(created_at: :desc) }
 
+  scope :namee, -> (name) { where("lower(name) like ?", "%#{name.downcase}%") }
+
+  # scope :total_outstanding, -> { where(total_unpaid > 0) }
+
 
   def total_price
     product_items.sum(&:total_price)

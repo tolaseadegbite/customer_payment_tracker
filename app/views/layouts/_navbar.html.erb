@@ -8,23 +8,22 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-            <!--<li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>-->
-            <% if user_signed_in? %>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <%= current_user.email %>
-                        <i class="bi bi-chevron-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" style="background:#34063b;">
-                        <%= link_to 'Logout', destroy_user_session_path, data: {"turbo-method": :delete}, class: "dropdown-item text-white" %>
-                    </ul>
-                </li>
-            <% else %>
-                <%= link_to 'Log in', new_user_session_path, class: "nav-link" %>
-                <%= link_to 'Sign up', new_user_registration_path, class: "nav-link" %>
-            <% end %>
+        <li class="nav-item">
+        <%= link_to "Add customer", new_customer_path, class: "butn butn--primary nav-link", data: { turbo_frame: dom_id(Customer.new) } %>
+        <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle fs-6"></i>
+                    <i class="bi bi-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" style="background:#34063b;">
+                    <%= link_to 'Logout', destroy_user_session_path, data: {"turbo-method": :delete}, class: "dropdown-item text-white" %>
+                </ul>
+            </li>
+        <% else %>
+            <%= link_to 'Log in', new_user_session_path, class: "nav-link" %>
+            <%= link_to 'Sign up', new_user_registration_path, class: "nav-link" %>
+        <% end %>
       </ul>
     </div>
   </div>

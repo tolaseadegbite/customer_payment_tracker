@@ -4,6 +4,10 @@ class CustomersController < ApplicationController
     def index
         @customers = current_user.customers.ordered
     end
+    
+    # def search
+    #     @customers = current_user.customers.where("lower(name) LIKE ?", "%" + params[:q].downcase + "%")
+    # end
 
     def show
         @product_item_dates = @customer.product_item_dates.includes(:product_items).ordered
