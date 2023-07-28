@@ -11,17 +11,21 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  product_item_date_id :bigint           not null
+#  user_id              :bigint           not null
 #
 # Indexes
 #
 #  index_product_items_on_product_item_date_id  (product_item_date_id)
+#  index_product_items_on_user_id               (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (product_item_date_id => product_item_dates.id)
+#  fk_rails_...  (user_id => users.id)
 #
 class ProductItem < ApplicationRecord
   belongs_to :product_item_date
+  belongs_to :user
 
   has_many :payments, dependent: :destroy
   accepts_nested_attributes_for :payments, reject_if: :all_blank, allow_destroy: true

@@ -10,11 +10,12 @@ class ProductItemsController < ApplicationController
   
     def create
       @product_item = @product_item_date.product_items.build(product_item_params)
+      @product_item.user = current_user
   
       if @product_item.save
         respond_to do |format|
-            format.html { redirect_to customer_path(@customer), notice: "Item was successfully created." }
-            format.turbo_stream { flash.now[:notice] = "Item was successfully created." }
+          format.html { redirect_to customer_path(@customer), notice: "Item was successfully created." }
+          format.turbo_stream { flash.now[:notice] = "Item was successfully created." }
         end
       else
         render :new, status: :unprocessable_entity
@@ -26,14 +27,15 @@ class ProductItemsController < ApplicationController
     end
   
     def update
-        if @product_item.update(product_item_params)
-          respond_to do |format|
-            format.html { redirect_to customer_path(@customer), notice: "Item was successfully updated." }
-            format.turbo_stream { flash.now[:notice] = "Item was successfully updated." }
-          end
-        else
-          render :edit, status: :unprocessable_entity
+      @product_item.user = current_user
+      if @product_item.update(product_item_params)
+        respond_to do |format|
+          format.html { redirect_to customer_path(@customer), notice: "Item was successfully updated." }
+          format.turbo_stream { flash.now[:notice] = "Item was successfully updated." }
         end
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
 
     def destroy
@@ -52,7 +54,7 @@ class ProductItemsController < ApplicationController
     end
   
     def product_item_params
-      params.require(:product_item).permit(:name, :description, :quantity, :unit_price, :payment_status, payments_attributes: [:id, :_destroy, :amount, :date])
+      params.require(:product_item).permit(:name, :description, :quantity, :unit_price, :payment_status, payments_attributes: [:id, :_destroy, :amount, :date, :user_id])
     end
   
     def set_customer

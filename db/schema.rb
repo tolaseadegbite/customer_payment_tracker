@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_23_145801) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_28_131532) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,7 +29,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_23_145801) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date"
+    t.bigint "user_id", null: false
     t.index ["product_item_id"], name: "index_payments_on_product_item_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "product_item_dates", force: :cascade do |t|
@@ -37,9 +39,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_23_145801) do
     t.bigint "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["customer_id"], name: "index_product_item_dates_on_customer_id"
     t.index ["date", "customer_id"], name: "index_product_item_dates_on_date_and_customer_id", unique: true
     t.index ["date"], name: "index_product_item_dates_on_date"
+    t.index ["user_id"], name: "index_product_item_dates_on_user_id"
   end
 
   create_table "product_items", force: :cascade do |t|
@@ -51,7 +55,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_23_145801) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "payment_status", null: false
+    t.bigint "user_id", null: false
     t.index ["product_item_date_id"], name: "index_product_items_on_product_item_date_id"
+    t.index ["user_id"], name: "index_product_items_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,6 +74,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_23_145801) do
 
   add_foreign_key "customers", "users"
   add_foreign_key "payments", "product_items"
+  add_foreign_key "payments", "users"
   add_foreign_key "product_item_dates", "customers"
+  add_foreign_key "product_item_dates", "users"
   add_foreign_key "product_items", "product_item_dates"
+  add_foreign_key "product_items", "users"
 end

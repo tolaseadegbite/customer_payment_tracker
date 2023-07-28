@@ -14,14 +14,14 @@
             </div>-->
 
             <div class="sub-header py-2" style="color:hsl(302, 90%, 27%);">
-                Outstanding price: <%= number_to_currency(product_item.outstanding_price, unit: '₦') %>
+                Outstanding price: <span class="fw-normal"><%= number_to_currency(product_item.outstanding_price, unit: '₦') %></span>
             </div>
 
             <div class="sub-header py-2" style="color:hsl(302, 90%, 27%);">
-                Has paid: <%= number_to_currency(product_item.has_paid, unit: "₦") %> of <%= number_to_currency(product_item.total_price, unit: '₦') %> (<%= product_item.percentage_paid %>%)
+                Has paid: <span class="fw-normal"><%= number_to_currency(product_item.has_paid, unit: "₦") %> / <%= number_to_currency(product_item.total_price, unit: '₦') %> (<%= product_item.percentage_paid %>%)</span>
             </div>
             
-            <% unless !(product_item.payment_status == 'paying') %>
+            <% if (product_item.payment_status == 'paying') && product_item.payments.present? %>
 
                 <div class="line-item-payment py-2">
                     <!--<div class="sub-header" style="color:hsl(302, 90%, 27%);">
@@ -33,6 +33,7 @@
                             <tr>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Date Paid</th>
+                                <th scope="col">Submitted by</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,12 +41,14 @@
                                 <tr class="fw-normal">
                                     <td><%= number_to_currency(p.amount, unit: "₦") %></td>
                                     <td><%= l(p.date, format: :long) %></td>
+                                    <td><%= p.user.email %></td>
                                 </tr>
                             <% end %>
                         </tbody>
                     </table>
                 </div>
             <% end %>
+            <p class="text-muted">Created by: <span class="fw-normal"></span><%= product_item.user.email %></span></p>
         </div>
         <div class="line-item__quantity-price">
             <%= product_item.quantity %>

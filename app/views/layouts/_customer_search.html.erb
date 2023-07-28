@@ -18,9 +18,9 @@
                             <%= f.input :name, input_html: { autofocus: true, placeholder: 'Customer name' }, label: false %>
                         </div>
 
-                        <div class="col-12">
-                            <%= f.input :payment_status, as: :select, collection: ProductItem.payment_statuses.keys, include_blank: "Select payment status", wrapper_html: { class: "line-item__description" }, label: false %>
-                        </div>
+                        <!--<div class="col-12">
+                            <%#= f.input :payment_status, as: :select, collection: ProductItem.payment_statuses.keys, include_blank: "Select payment status", wrapper_html: { class: "line-item__description" }, label: false %>
+                        </div>-->
 
                         <div class="col-12 text-end">
                             <%= button_tag type: 'submit', class: "butn butn--primary" do %>

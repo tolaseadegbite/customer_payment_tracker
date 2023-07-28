@@ -8,6 +8,7 @@ class ProductItemDatesController < ApplicationController
 
     def create
         @product_item_date = @customer.product_item_dates.build(product_item_date_params)
+        @product_item_date.user = current_user
         if @product_item_date.save
             respond_to do |format|
                 format.html { redirect_to customer_path(@customer), notice: "Date was successfully created." }
@@ -23,6 +24,7 @@ class ProductItemDatesController < ApplicationController
     end
 
     def update
+        @product_item_date.user = current_user
         if @product_item_date.update(product_item_date_params)
             respond_to do |format|
                 format.html { redirect_to customer_path(@customer), notice: "Date was successfully updated." }
