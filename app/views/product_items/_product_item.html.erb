@@ -1,7 +1,7 @@
 <%= turbo_frame_tag product_item do %>
     <div class="line-item" style="border-bottom: 5px solid purple;">
         <div class="line-item__name">
-            <h6>&#8212; <%= product_item.name %></h6>
+            <h6>&#8212; <%= product_item.product.name %></h6>
             <div class="line-item__description">
                 <%= simple_format product_item.description %>
             </div>

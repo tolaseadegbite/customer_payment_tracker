@@ -1,0 +1,12 @@
+<div class="customer col-12 justify-content-between d-flex align-items-center">
+    <%= link_to store.name, store_path(store) %>
+    <span class="customer__actions">
+      <%= link_to store_path(store), class: "butn butn--light" do %>
+        <%= image_tag "eye.png", size: "25" %>
+      <% end %>
+      
+      <%= link_to edit_store_path(store), class: "butn butn--light" do %>
+        <%= image_tag "edit.png", size: "25" %>
+      <% end %>
+    </span>
+</div>

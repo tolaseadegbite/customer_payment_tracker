@@ -7,9 +7,22 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+      <ul class="navbar-nav mb-2 mb-lg-0 ms-5">
         <li class="nav-item">
-        <%= link_to "Add customer", new_customer_path, class: "butn butn--primary nav-link", data: { turbo_frame: dom_id(Customer.new) } %>
+          <%= link_to "STORES", stores_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "CUSTOMERS", customers_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "PRODUCTS", products_path, class: "nav-link" %>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+        
+        <!--<li class="nav-item">
+        <%#= link_to "Add customer", new_customer_path, class: "butn butn--primary nav-link", data: { turbo_frame: dom_id(Customer.new) } %>-->
         <% if user_signed_in? %>
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

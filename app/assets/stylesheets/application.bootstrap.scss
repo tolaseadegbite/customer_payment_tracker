@@ -5,6 +5,9 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
+// Tom-select
+@import "tom-select/dist/css/tom-select.bootstrap5.min";
+
 // Mixins
 @import "mixins/media";
 
@@ -17,6 +20,7 @@
 @import "components/flash";
 @import "components/customer_total";
 @import "components/empty_state";
+@import "components/store";
 
 // Config
 @import "config/variable";

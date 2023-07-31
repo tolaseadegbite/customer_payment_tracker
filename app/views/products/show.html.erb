@@ -1,0 +1,49 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to products"), products_path %>
+  
+  <p class="text-muted">product created by: <%= @product.user.email %></p>
+
+  <div class="header">
+    <h1>
+      <%= @product.name %>
+    </h1>
+
+    <span>
+      <%= link_to "Edit product", edit_product_path(@product), class: "butn butn--primary" %>
+    </span>
+  </div>
+
+  <div class="product-data my-5">
+    <h2>Product data</h2>
+
+    <table class="table table-bordered rounded overflow-hidden my-3">
+      <thead>
+          <tr>
+              <th scope="col">Qty</th>
+              <th scope="col">Code</th>
+              <th scope="col">created by</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="fw-normal">
+            <td><%= @product.quantity %></td>
+            <td><%= @product.code %></td>
+            <td><%= @product.user.email %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+    <% if @product.stores.present? %>
+        <h2>This product is available in stores below</h2>
+
+        <%= render @product.stores %>
+    <% else %>
+      <div class="empty-state">
+          <%= image_tag 'no-results', size: "100" %>
+          <p class="empty-state__text mt-3" style="color:purple">
+              This product is not available in any of your stores
+          </p>
+      </div>
+    <% end %>
+</main>

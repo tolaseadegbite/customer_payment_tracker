@@ -81,3 +81,5 @@ end
 
 
 gem "dockerfile-rails", ">= 1.5", :group => :development
+
+# gem "byebug", "~> 11.1"

@@ -1,0 +1,18 @@
+<%= simple_form_for store, wrapper: :inline_form, html: { class: "customer form" } do |f| %>
+    
+    <%= f.error_notification %>
+
+    <%= f.input :name, input_html: { autofocus: true, placeholder: 'Store name' }, label: false %>
+
+    <div data-controller="tom-select">
+        <%= f.input :product_ids, as: :select, collection: Product.order(:name), label_method: :name, input_html: { placeholder: "Select store products", multiple: true, id: "select-products", class: 'products' }, label: false %>
+    </div>
+
+    <%= link_to stores_path, class: "butn butn--light" do %>
+        <%= image_tag "x.png", width: "19" %>
+    <% end %>
+
+    <%= button_tag type: 'Submit', class: "butn butn--secondary mt-1" do %>
+        <%= image_tag "check.png", width: "19" %>
+    <% end %>
+<% end %>
