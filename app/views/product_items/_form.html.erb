@@ -23,11 +23,11 @@
     <% end %>
   </template>
   
-  <% unless f.object.new_record? %>
+  <%# unless f.object.new_record? %>
     <%= f.fields_for :payments do |payment_fields| %>
       <%= render "product_items/product_item_payment_form", f: payment_fields %>
     <% end %>
-  <% end %>
+  <%# end %>
 
   <!-- Inserted elements will be injected before that target. -->
   <div data-nested-form-target="target"></div>

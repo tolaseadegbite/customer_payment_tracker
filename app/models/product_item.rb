@@ -4,7 +4,7 @@
 #
 #  id                   :bigint           not null, primary key
 #  description          :text
-#  name                 :string           not null
+#  name                 :string
 #  payment_status       :integer          not null
 #  quantity             :integer          not null
 #  unit_price           :decimal(10, 2)   not null
