@@ -14,7 +14,7 @@
   </div>
 
   <div class="product-data my-5">
-    <h2>Product data</h2>
+    <h3>Product data</h3>
 
     <table class="table table-bordered rounded overflow-hidden my-3">
       <thead>
@@ -35,7 +35,7 @@
   </div>
 
     <% if @product.stores.present? %>
-        <h2>This product is available in stores below</h2>
+        <h3>This product is available in stores below</h3>
 
         <%= render @product.stores %>
     <% else %>

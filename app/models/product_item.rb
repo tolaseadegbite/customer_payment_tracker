@@ -26,6 +26,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class ProductItem < ApplicationRecord
+
+  after_update :decrement_quantity
+
   belongs_to :product_item_date
   belongs_to :user
   belongs_to :product
@@ -77,10 +80,16 @@ class ProductItem < ApplicationRecord
   end
 
   def new_product_quantity
-      product.quantity - self.quantity
+    product.quantity - self.quantity
   end
 
   def update_product_quantity
-      product.update(quantity: new_product_quantity)
+    product.update(quantity: new_product_quantity)
+  end
+
+  def decrement_quantity
+    if quantity_previously_changed?
+      update_product_quantity
+    end
   end
 end

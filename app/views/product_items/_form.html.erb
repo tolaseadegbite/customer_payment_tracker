@@ -1,5 +1,5 @@
 <%= simple_form_for [customer, product_item_date, product_item], 
-                    html: { class: "form line-item line-item--form" }, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
+                    html: { class: "form line-item line-item--form" }, data: { turbo: "false", controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
 
   <%= f.error_notification %>
 
