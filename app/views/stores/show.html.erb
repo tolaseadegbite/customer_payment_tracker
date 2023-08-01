@@ -1,0 +1,40 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to stores"), stores_path %>
+  
+  <p class="text-muted">Store created by: <%= @store.user.email %></p>
+
+  <div class="header">
+    <h1>
+      <%= @store.name %>
+    </h1>
+
+    <span>
+      <%= link_to "Edit store", edit_store_path(@store), class: "butn butn--primary" %>
+    </span>
+  </div>
+
+  <h3>Store products</h3>
+
+  <div class="store-products">
+    <table class="table table-bordered rounded overflow-hidden my-3">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Code</th>
+                <th scope="col">created by</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @store.products.each do |p| %>
+            <tr class="fw-normal">
+                <td><%= link_to p.name, p %></td>
+                <td><%= p.quantity %></td>
+                <td><%= p.code %></td>
+                <td><%= p.user.email %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
+</main>

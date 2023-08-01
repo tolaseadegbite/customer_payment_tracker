@@ -1,0 +1,16 @@
+<%= simple_form_for product, wrapper: :inline_form, html: { class: "customer form" } do |f| %>
+    
+    <%= f.error_notification %>
+
+    <%= f.input :name, input_html: { autofocus: true, placeholder: 'Product name' }, label: false %>
+    <%= f.input :code, input_html: { autofocus: true, placeholder: 'product code' }, label: false %>
+    <%= f.input :quantity, input_html: { autofocus: true, placeholder: 'Quantity in stock' }, label: false %>
+
+    <%= link_to products_path, class: "butn butn--light" do %>
+        <%= image_tag "x.png", width: "19" %>
+    <% end %>
+
+    <%= button_tag type: 'Submit', class: "butn butn--secondary mt-1" do %>
+        <%= image_tag "check.png", width: "19" %>
+    <% end %>
+<% end %>

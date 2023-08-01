@@ -11,6 +11,7 @@ class CustomersController < ApplicationController
 
     def show
         @product_item_dates = @customer.product_item_dates.includes(:product_items).ordered
+        # debugger
     end
 
     def new

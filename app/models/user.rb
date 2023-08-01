@@ -22,8 +22,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+  has_many :stores
   has_many :customers
   has_many :product_item_dates
+  has_many :products
   has_many :product_items
   has_many :payments
 end

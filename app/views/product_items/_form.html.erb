@@ -1,9 +1,14 @@
 <%= simple_form_for [customer, product_item_date, product_item], 
-                    html: { class: "form line-item line-item--form" }, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
+                    html: { class: "form line-item line-item--form" }, data: { turbo: "false", controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
 
   <%= f.error_notification %>
 
-  <%= f.input :name, wrapper_html: { class: "line-item__name" }, placeholder: "Enter product name", label: false, input_html: { autofocus: true } %>
+  <%#= f.input :name, wrapper_html: { class: "line-item__name" }, placeholder: "Enter product name", label: false, input_html: { autofocus: true } %>
+  <span data-controller="tom-select">
+    <%= f.input :product_id, as: :select, collection: Product.order(:name), label_method: :name, wrapper_html: { class: "line-item__name" }, input_html: { placeholder: "Select store products", id: "select-products" }, label: false %>
+
+    <%#= f.collection_select :product_id, Product.all, :id, :name, { prompt: "Select product" }, wrapper_html: { class: "line-item__name" }, input_html: { placeholder: "Select store products", id: "select-products" }, label: false %>
+  </span>
   <%= f.input :quantity, wrapper_html: { class: "line-item__quantity" }, label: false, placeholder: "Quantity" %>
   <%= f.input :unit_price, wrapper_html: { class: "line-item__price" }, placeholder: "Price", label: false %>
   <div class="d-block w-100">
@@ -40,7 +45,7 @@
         Cancel
     <% end %>
     <%= button_tag type: 'submit', class: "butn butn--secondary" do %>
-        Submit
+      Submit
     <% end %>
   </div>
 

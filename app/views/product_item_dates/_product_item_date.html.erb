@@ -35,7 +35,7 @@
         <%= turbo_frame_tag nested_dom_id(product_item_date, ProductItem.new) %>
 
         <div class="line-item-date__footer">
-          <%= link_to "Add product item",
+          <%= link_to "Add purchase",
                       [:new, customer, product_item_date, :product_item],
                       data: { turbo_frame: nested_dom_id(product_item_date, ProductItem.new) },
                       class: "butn butn--primary" %>

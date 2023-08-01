@@ -13,7 +13,8 @@
     "postcss": "^8.4.26",
     "postcss-cli": "^10.1.0",
     "sass": "^1.63.6",
-    "stimulus-rails-nested-form": "^4.1.0"
+    "stimulus-rails-nested-form": "^4.1.0",
+    "tom-select": "^2.2.2"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",

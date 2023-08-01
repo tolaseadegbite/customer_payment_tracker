@@ -1,0 +1,14 @@
+<main class="container">
+    <div class="header">
+        <h1><i class="bi bi-shop"></i> Stores</h1>
+        <span><%= link_to "Create store", new_store_path, class: "butn butn--primary" %></span>
+    </div>
+
+    <% if @stores.none? %>
+        <%= render "stores/empty_state" %>
+    <% end %>
+
+    <div class="row">
+        <%= render @stores %>
+    </div>
+</main>
