@@ -2,13 +2,15 @@
 #
 # Table name: products
 #
-#  id         :bigint           not null, primary key
-#  code       :string
-#  name       :string           not null
-#  quantity   :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  id          :bigint           not null, primary key
+#  code        :string
+#  description :text
+#  name        :string           not null
+#  quantity    :integer          not null
+#  unit_price  :decimal(10, 2)   not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint           not null
 #
 # Indexes
 #

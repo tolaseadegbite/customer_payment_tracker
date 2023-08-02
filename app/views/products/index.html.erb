@@ -9,6 +9,14 @@
     <% end %>
 
     <div class="row">
-        <%= render @products %>
+        <div class="line-item-date__body">
+            <div class="line-item line-item--header">
+                <div class="line-item__name">Name/description</div>
+                <div class="line-item__quantity">Quantity</div>
+                <div class="line-item__price">Price</div>
+                <div class="line-item__actions"></div>
+            </div>
+            <%= render @products %>
+        </div>
     </div>
 </main>

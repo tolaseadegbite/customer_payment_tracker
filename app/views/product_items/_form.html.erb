@@ -10,10 +10,10 @@
     <%#= f.collection_select :product_id, Product.all, :id, :name, { prompt: "Select product" }, wrapper_html: { class: "line-item__name" }, input_html: { placeholder: "Select store products", id: "select-products" }, label: false %>
   </span>
   <%= f.input :quantity, wrapper_html: { class: "line-item__quantity" }, label: false, placeholder: "Quantity" %>
-  <%= f.input :unit_price, wrapper_html: { class: "line-item__price" }, placeholder: "Price", label: false %>
+  <%#= f.input :unit_price, wrapper_html: { class: "line-item__price" }, placeholder: "Price", label: false %>
+    <%= f.input :payment_status, as: :select, collection: ProductItem.payment_statuses.keys, include_blank: "Select payment status", wrapper_html: { class: "line-item__price" }, label: false %>
   <div class="d-block w-100">
-    <%= f.input :description, wrapper_html: { class: "line-item__description mb-2" }, placeholder: "Product description", label: false %>
-    <%= f.input :payment_status, as: :select, collection: ProductItem.payment_statuses.keys, include_blank: "Select payment status", wrapper_html: { class: "line-item__description" }, label: false %>
+    <%#= f.input :description, wrapper_html: { class: "line-item__description mb-2" }, placeholder: "Product description", label: false %>
   </div>
 
   <div class="d-block w-100 mt-3">

@@ -1,16 +1,22 @@
-<%= simple_form_for product, wrapper: :inline_form, html: { class: "customer form" } do |f| %>
+<%= simple_form_for product, 
+                    wrapper: :inline_form,
+                    html: { class: "form line-item line-item--form" } do |f| %>
     
     <%= f.error_notification %>
 
-    <%= f.input :name, input_html: { autofocus: true, placeholder: 'Product name' }, label: false %>
-    <%= f.input :code, input_html: { autofocus: true, placeholder: 'product code' }, label: false %>
-    <%= f.input :quantity, input_html: { autofocus: true, placeholder: 'Quantity in stock' }, label: false %>
+    <%= f.input :name, wrapper_html: { class: "line-item__name" }, placeholder: "Enter product name", label: false, input_html: { autofocus: true } %>
+
+    <%= f.input :quantity, wrapper_html: { class: "line-item__quantity" }, label: false, placeholder: "Quantity" %>
+    <%= f.input :unit_price, wrapper_html: { class: "line-item__price" }, placeholder: "Price", label: false %>
+    <div class="d-block w-100">
+        <%= f.input :description, wrapper_html: { class: "line-item__description mb-2" }, placeholder: "Product description", label: false %>
+    </div>
 
     <%= link_to products_path, class: "butn butn--light" do %>
         <%= image_tag "x.png", width: "19" %>
     <% end %>
 
-    <%= button_tag type: 'Submit', class: "butn butn--secondary mt-1" do %>
+    <%= button_tag type: 'Submit', class: "butn butn--secondary" do %>
         <%= image_tag "check.png", width: "19" %>
     <% end %>
 <% end %>

@@ -21,6 +21,8 @@
           <tr>
               <th scope="col">Qty</th>
               <th scope="col">Code</th>
+              <th scope="col">Price</th>
+              <th scope="col">description</th>
               <th scope="col">created by</th>
           </tr>
       </thead>
@@ -28,6 +30,8 @@
           <tr class="fw-normal">
             <td><%= @product.quantity %></td>
             <td><%= @product.code %></td>
+            <td><%= @product.unit_price %></td>
+            <td><%= @product.description %></td>
             <td><%= @product.user.email %></td>
           </tr>
       </tbody>

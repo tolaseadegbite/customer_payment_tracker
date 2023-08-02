@@ -2,13 +2,15 @@
 #
 # Table name: products
 #
-#  id         :bigint           not null, primary key
-#  code       :string
-#  name       :string           not null
-#  quantity   :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  id          :bigint           not null, primary key
+#  code        :string
+#  description :text
+#  name        :string           not null
+#  quantity    :integer          not null
+#  unit_price  :decimal(10, 2)   not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint           not null
 #
 # Indexes
 #
@@ -20,8 +22,8 @@
 #
 class Product < ApplicationRecord
     validates_presence_of :name
-    # validates_presence_of :unit_price, numericality: { greater_than: 0 }
     validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+    validates :unit_price, presence: true, numericality: { greater_than: 0 }
 
     belongs_to :user
 

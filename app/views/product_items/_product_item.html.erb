@@ -3,7 +3,7 @@
         <div class="line-item__name">
             <h6>&#8212; <%= product_item.product.name %></h6>
             <div class="line-item__description">
-                <%= simple_format product_item.description %>
+                <%= simple_format product_item.product.description %>
             </div>
             <div class="line-item__payment_status">
                 <span class="text-info">Payment status:</span> <span class="fw-normal"><%= product_item.payment_status %></span>
@@ -48,18 +48,19 @@
                     </table>
                 </div>
             <% end %>
-            <p class="text-muted">Created by: <span class="fw-normal"></span><%= product_item.user.email %></span></p>
+            <p class="text-muted m-0">Recorded by: <span class="fw-normal"></span><%= product_item.user.email %></span></p>
+            <p class="text-muted m-0">Purchased at: <span class="fw-normal"></span><%= product_item.store.name %></span></p>
         </div>
         <div class="line-item__quantity-price">
             <%= product_item.quantity %>
             &times;
-            <%= number_to_currency(product_item.unit_price, unit: "₦") %> 
+            <%= number_to_currency(product_item.product.unit_price, unit: "₦") %> 
         </div>
         <div class="line-item__quantity">
             <%= product_item.quantity %>
         </div>
         <div class="line-item__price">
-            <%= number_to_currency(product_item.unit_price, unit: "₦") %> (total: <%= number_to_currency(product_item.total_price, unit: "₦") %>)
+            <%= number_to_currency(product_item.product.unit_price, unit: "₦") %> (total: <%= number_to_currency(product_item.total_price, unit: "₦") %>)
         </div>
         <div class="line-item__actions">
             <%= button_to [customer, product_item_date, product_item], method: :delete, class: "butn butn--light" do %>
