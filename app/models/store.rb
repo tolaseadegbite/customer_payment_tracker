@@ -21,9 +21,15 @@ class Store < ApplicationRecord
 
   validates_presence_of :name
 
+  has_many :products
+
   has_many :store_products
   has_many :products, through: :store_products
   has_many :product_items
 
   scope :ordered, -> { order(created_at: :desc) }
+
+  def all_store_products
+    products
+  end
 end

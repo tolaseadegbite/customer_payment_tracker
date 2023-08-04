@@ -10,6 +10,7 @@
     <%= f.input :unit_price, wrapper_html: { class: "line-item__price" }, placeholder: "Price", label: false %>
     <div class="d-block w-100">
         <%= f.input :description, wrapper_html: { class: "line-item__description mb-2" }, placeholder: "Product description", label: false %>
+        <%= f.input :store_id, as: :select, collection: @stores, label_method: :name, include_blank: "Available in all stores", wrapper_html: { class: "line-item__description" }, label: false %>
     </div>
 
     <%= link_to products_path, class: "butn butn--light" do %>

@@ -10,22 +10,28 @@
 #  unit_price  :decimal(10, 2)   not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  store_id    :bigint
 #  user_id     :bigint           not null
 #
 # Indexes
 #
-#  index_products_on_user_id  (user_id)
+#  index_products_on_store_id  (store_id)
+#  index_products_on_user_id   (user_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (store_id => stores.id)
 #  fk_rails_...  (user_id => users.id)
 #
 class Product < ApplicationRecord
     validates_presence_of :name
+    validates :store_id, length: { minimum: 1, allow_nil: true }
     validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
     validates :unit_price, presence: true, numericality: { greater_than: 0 }
 
     belongs_to :user
+
+    belongs_to :store, optional: true
 
     has_many :store_products
     has_many :stores, through: :store_products

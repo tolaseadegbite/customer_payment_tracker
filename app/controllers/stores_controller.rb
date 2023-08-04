@@ -1,5 +1,6 @@
 class StoresController < ApplicationController
     before_action :find_store, only: [:show, :edit, :update, :destroy]
+    before_action :set_products, only: [:new, :edit]
 
     def index
         @stores = Store.ordered
@@ -16,8 +17,7 @@ class StoresController < ApplicationController
     def create
         @store = current_user.stores.build(store_params)
         if @store.save
-            flash[:notice] = "Store created successfully"
-            redirect_to @store
+            redirect_to edit_store_url(@store), notice: "Product created successfully, add products to your store"
         else
             render :new, status: :unprocessable_entity
         end
@@ -49,5 +49,9 @@ class StoresController < ApplicationController
 
         def find_store
             @store ||= current_user.stores.find(params[:id])
+        end
+
+        def set_products
+            @products ||= Product.where(store_id: @store.id).order(:name) + Product.where(store_id: nil)
         end
 end

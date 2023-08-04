@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_02_111927) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_03_183932) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_02_111927) do
     t.bigint "user_id", null: false
     t.text "description"
     t.decimal "unit_price", precision: 10, scale: 2, null: false
+    t.bigint "store_id"
+    t.index ["store_id"], name: "index_products_on_store_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
@@ -111,6 +113,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_02_111927) do
   add_foreign_key "product_items", "products"
   add_foreign_key "product_items", "stores"
   add_foreign_key "product_items", "users"
+  add_foreign_key "products", "stores"
   add_foreign_key "products", "users"
   add_foreign_key "store_products", "products"
   add_foreign_key "store_products", "stores"

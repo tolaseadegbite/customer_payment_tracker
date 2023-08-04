@@ -9,7 +9,10 @@
     </h1>
 
     <span>
-      <%= link_to "Edit product", edit_product_path(@product), class: "butn butn--primary" %>
+      <div class="btn-group border" role="group" aria-label="Basic example">
+        <%= link_to "Edit", edit_product_path(@product), class: "btn btn-light" %>
+        <%= link_to "Delete", @product, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      </div>
     </span>
   </div>
 
@@ -23,7 +26,8 @@
               <th scope="col">Code</th>
               <th scope="col">Price</th>
               <th scope="col">description</th>
-              <th scope="col">created by</th>
+              <th scope="col">Store</th>
+              <th scope="col">Uploaded by</th>
           </tr>
       </thead>
       <tbody>
@@ -32,6 +36,11 @@
             <td><%= @product.code %></td>
             <td><%= @product.unit_price %></td>
             <td><%= @product.description %></td>
+            <% if @product.store_id.nil? %>
+              <td>Available in all stores</td>
+            <% else %>
+              <td><%= @product.store.name %></td>
+            <% end %>
             <td><%= @product.user.email %></td>
           </tr>
       </tbody>

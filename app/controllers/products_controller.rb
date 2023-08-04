@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
     before_action :set_product, only: [:show, :edit, :update, :destroy]
+    before_action :set_stores, only: [:new, :edit, :update]
 
     def index
         @products = Product.all
@@ -16,8 +17,7 @@ class ProductsController < ApplicationController
     def create
         @product = current_user.products.build(product_params)
         if @product.save
-            flash[:notice] = "Product created successfully"
-            redirect_to @product
+            redirect_to @product, notice: "Product created successfully"
         else
             render :new, status: :unprocessable_entity
         end
@@ -44,10 +44,14 @@ class ProductsController < ApplicationController
     private
 
         def product_params
-            params.require(:product).permit(:name, :quantity, :code, :unit_price, :description)
+            params.require(:product).permit(:name, :quantity, :code, :unit_price, :description, :store_id)
         end
 
         def set_product
             @product ||= Product.find(params[:id])
+        end
+
+        def set_stores
+            @stores = current_user.stores.order(:name)
         end
 end

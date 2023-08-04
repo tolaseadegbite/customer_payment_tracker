@@ -1,9 +1,16 @@
 <%#= turbo_frame_tag product do %>
   <div class="line-item">
     <div class="line-item__name">
-      <%= product.name %>
+      <%= link_to product.name, product %>
       <div class="line-item__description">
         <%= simple_format product.description %>
+      </div>
+      <div class="store-name">
+        <% if product.store.present? %>
+          <p class="text-muted m-0">Available in: <span class="fw-normal"></span><%= product.store.name %></span></p>
+        <% else %>
+          <p class="text-muted m-0">Available in: all stores</span></p>
+        <% end %>
       </div>
     </div>
     <div class="line-item__quantity-price">

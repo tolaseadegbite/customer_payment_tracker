@@ -1,13 +1,13 @@
 class ProductItemsController < ApplicationController
     before_action :set_customer
     before_action :set_product_item_date
-    before_action :set_products
+    # before_action :set_products
     before_action :set_product_item, only: [:edit, :update, :destroy]
   
     def new
       @product_item = @product_item_date.product_items.build
       @product_item.payments.build
-      @products = Product.all.map{ |p| [p.name, p.id] }
+      # @products = Product.all.map{ |p| [p.name, p.id] }
     end
   
     def create
@@ -29,7 +29,7 @@ class ProductItemsController < ApplicationController
     end
 
     def edit
-      @products = Product.all
+      # @products = Product.all
       @product_item.payments.build
     end
   
@@ -82,7 +82,7 @@ class ProductItemsController < ApplicationController
       @product_item_date = @customer.product_item_dates.find(params[:product_item_date_id])
     end
 
-    def set_products
-      @products = Product.all.order(:name)
-    end
+    # def set_products
+    #   @products = Product.all.order(:name)
+    # end
 end
