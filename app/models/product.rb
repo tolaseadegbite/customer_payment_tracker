@@ -24,6 +24,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Product < ApplicationRecord
+
+    before_create :product_code
+
     validates_presence_of :name
     validates :store_id, length: { minimum: 1, allow_nil: true }
     validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
@@ -40,4 +43,15 @@ class Product < ApplicationRecord
 
     scope :ordered, -> { where('name LIKE ?', "a%").order(:name) }
 
+    def Product.new_token
+        SecureRandom.urlsafe_base64(4)
+    end
+    
+    def product_code
+        self.code = Product.new_token
+    end
+
+    # def update_code
+    #     self.update_attribute(:code, Product.new_token)
+    # end
 end
