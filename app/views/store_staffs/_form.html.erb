@@ -1,0 +1,23 @@
+<%= simple_form_for [store, store_staff], html: { class: "form customer" } do |f| %>
+
+    <div class="staff-list bg-white">
+        <p>Add/remove store staffs</p>
+        <h6>Staffs</h6>
+        <% User.find_each do |user| %>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item py-2 px-0 d-flex justify-content-between">
+                    <%= f.label :user_ids, class: "form-check-label" do %>
+                        <%= user.email %>
+                    <% end %>
+                    
+                    <%= f.check_box :user_id, class:"form-check-input me-1" %>
+                </li>
+            </ul>
+        <% end %>
+        <div class="text-end mt-3">
+            <%= link_to 'Cancel', @store, class: "butn butn--light" %>
+            <%= f.submit "Create store staffs", class: "butn butn--secondary btn-sm" %>
+        </div>
+    </div>
+
+<% end %>

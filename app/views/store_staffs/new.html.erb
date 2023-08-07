@@ -1,0 +1,9 @@
+<main class="container">
+    <%= link_to sanitize("&larr; Back to store"), @store %>
+
+    <div class="header">
+        <h1>Staff List for <small><%= link_to @store.name, @store %></small></h1>
+    </div>
+
+    <%= render "form", store: @store, store_staff: @store_staff %>
+</main>

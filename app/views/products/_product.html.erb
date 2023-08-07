@@ -13,7 +13,7 @@
         <% end %>
 
         <% if product.code.present? %>
-          Product Code: <span class="text-info"><%= product.code %></span>
+          Product Code: <span class="text-secondary"><%= product.code %></span>
         <% end %>
       </div>
     </div>
@@ -29,11 +29,13 @@
       <%= number_to_currency(product.unit_price, unit: "₦") %>
     </div>
     <div class="line-item__actions">
-      <%= link_to product, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" }, class: "butn butn--light" do %>
-        <%= image_tag 'delete.png', size: '25' %>
-      <% end %>
-      <%= link_to edit_product_path(product), class: "butn butn--light" do %>
-        <%= image_tag 'edit.png', size: '25' %>
+      <% if authorized_user?(current_user) %>
+        <%= link_to product, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?", turbo_frame: "_top" }, class: "butn butn--light" do %>
+          <%= image_tag 'delete.png', size: '25' %>
+        <% end %>
+        <%= link_to edit_product_path(product), class: "butn butn--light" do %>
+          <%= image_tag 'edit.png', size: '25' %>
+        <% end %>
       <% end %>
       </div>
   </div>

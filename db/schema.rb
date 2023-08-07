@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_03_183932) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_07_213957) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_183932) do
     t.text "description"
     t.decimal "unit_price", precision: 10, scale: 2, null: false
     t.bigint "store_id"
+    t.index ["name", "store_id"], name: "index_products_on_name_and_store_id", unique: true
     t.index ["store_id"], name: "index_products_on_store_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
@@ -82,6 +83,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_183932) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_store_products_on_product_id"
     t.index ["store_id"], name: "index_store_products_on_store_id"
+  end
+
+  create_table "store_staffs", force: :cascade do |t|
+    t.bigint "store_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_store_staffs_on_store_id"
+    t.index ["user_id"], name: "index_store_staffs_on_user_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -100,6 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_183932) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -117,5 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_183932) do
   add_foreign_key "products", "users"
   add_foreign_key "store_products", "products"
   add_foreign_key "store_products", "stores"
+  add_foreign_key "store_staffs", "stores"
+  add_foreign_key "store_staffs", "users"
   add_foreign_key "stores", "users"
 end

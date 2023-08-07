@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
     before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
     def index
-        @customers = current_user.customers.ordered
+        @customers = Customer.ordered
     end
     
     # def search
@@ -60,6 +60,6 @@ class CustomersController < ApplicationController
     end
 
     def set_customer
-        @customer ||= current_user.customers.find(params[:id])
+        @customer ||= Customer.find(params[:id])
     end
 end

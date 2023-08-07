@@ -3,5 +3,5 @@
     You have not created any store yet!
   </p>
 
-  <%= link_to "Create store", new_store_path, class: "butn butn--primary" %>
+  <%= link_to "Create store", new_store_path, class: "butn butn--primary" if admin?(current_user) %>
 </div>

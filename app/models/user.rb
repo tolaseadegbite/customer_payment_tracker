@@ -8,6 +8,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  role                   :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -28,4 +29,9 @@ class User < ApplicationRecord
   has_many :products
   has_many :product_items
   has_many :payments
+
+  enum :role, { 
+        admin: 0,
+        editor: 1,
+   }
 end
