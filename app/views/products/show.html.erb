@@ -26,7 +26,9 @@
               <th scope="col">Code</th>
               <th scope="col">Price</th>
               <th scope="col">description</th>
-              <th scope="col">Store</th>
+              <% if @product.stores.any? %>
+                <th scope="col">Store</th>
+              <% end %>
               <th scope="col">Uploaded by</th>
           </tr>
       </thead>
@@ -36,10 +38,12 @@
             <td><%= @product.code %></td>
             <td><%= @product.unit_price %></td>
             <td><%= @product.description %></td>
-            <% if @product.store_id.nil? %>
-              <td>Available in all stores</td>
-            <% else %>
-              <td><%= @product.store.name %></td>
+            <% if @product.stores.present? %>
+              <td>
+                <% @product.stores.each do |store| %>
+                  <%= store.name %> |
+                <% end %>
+              </td>
             <% end %>
             <td><%= @product.user.email %></td>
           </tr>

@@ -6,10 +6,14 @@
         <%= simple_format product.description %>
       </div>
       <div class="store-name">
-        <% if product.store.present? %>
-          <p class="text-muted m-0">Available in: <span class="fw-normal"></span><%= product.store.name %></span></p>
-        <% else %>
-          <p class="text-muted m-0">Available in: all stores</span></p>
+        <% if product.stores.present? %>
+          <p class="text-muted m-0">Available in: 
+            <span class="fw-normal">
+              <% product.stores.each do |store| %>
+                <%= store.name %> |
+              <% end %>
+            </span>
+          </p>
         <% end %>
 
         <% if product.code.present? %>

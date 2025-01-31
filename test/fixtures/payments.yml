@@ -3,8 +3,8 @@
 # Table name: payments
 #
 #  id              :bigint           not null, primary key
-#  amount          :decimal(10, 2)
-#  date            :date
+#  amount          :decimal(10, 2)   not null
+#  date            :date             not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  product_item_id :bigint           not null

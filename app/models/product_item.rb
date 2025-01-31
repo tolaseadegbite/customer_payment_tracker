@@ -35,7 +35,8 @@ class ProductItem < ApplicationRecord
   belongs_to :product
   belongs_to :store
 
-  has_many :payments, dependent: :destroy
+  has_many :payments, dependent: :destroy, inverse_of: :product_item
+
   accepts_nested_attributes_for :payments, reject_if: :all_blank, allow_destroy: true
 
   enum :payment_status, {

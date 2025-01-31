@@ -1,14 +1,13 @@
-# fly.toml app configuration file generated for customers-payment-tracker on 2023-07-24T14:24:20+01:00
+# fly.toml app configuration file generated for customer-payment-tracker on 2024-01-10T20:28:09+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "customers-payment-tracker"
-primary_region = "ord"
+app = "customer-payment-tracker"
+primary_region = "den"
 console_command = "/rails/bin/rails console"
 
-[deploy]
-  release_command = "./bin/rails db:prepare"
+[build]
 
 [http_service]
   internal_port = 3000
@@ -17,6 +16,11 @@ console_command = "/rails/bin/rails console"
   auto_start_machines = true
   min_machines_running = 0
   processes = ["app"]
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256
 
 [[statics]]
   guest_path = "/rails/public"

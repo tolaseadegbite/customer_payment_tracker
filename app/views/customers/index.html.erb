@@ -4,9 +4,11 @@
         <span><%= link_to "Add customer", new_customer_path, class: "butn butn--primary", data: { turbo_frame: dom_id(Customer.new) } %></span>
     </div>
 
-    <div class="header search">
-        <%= render 'layouts/customer_search' %>
-    </div>
+    <% unless @customers.blank? %>
+        <div class="header search">
+            <%= render 'layouts/customer_search' %>
+        </div>
+    <% end %>
 
     <%= turbo_frame_tag Customer.new do %>
         <% if @customers.none? %>
@@ -19,4 +21,8 @@
             <%= render @customers %>
         </div>
     <% end %>
+    
+    <%= paginate @customers, window: 2, theme: 'bootstrap-5',
+                    pagination_class: "pagination-sm flex-wrap justify-content-center",
+                    nav_class: "d-inline-block" %>
 </main>

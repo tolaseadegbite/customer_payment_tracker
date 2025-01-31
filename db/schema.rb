@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_03_183932) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_13_164345) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,11 +24,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_183932) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.decimal "amount", precision: 10, scale: 2
+    t.decimal "amount", precision: 10, scale: 2, null: false
     t.bigint "product_item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "date"
+    t.date "date", null: false
     t.bigint "user_id", null: false
     t.index ["product_item_id"], name: "index_payments_on_product_item_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
@@ -70,9 +70,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_183932) do
     t.bigint "user_id", null: false
     t.text "description"
     t.decimal "unit_price", precision: 10, scale: 2, null: false
-    t.bigint "store_id"
-    t.index ["store_id"], name: "index_products_on_store_id"
     t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
+  create_table "search_entries", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.string "searchable_type", null: false
+    t.bigint "searchable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_search_entries_on_searchable"
   end
 
   create_table "store_products", force: :cascade do |t|
@@ -82,6 +90,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_183932) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_store_products_on_product_id"
     t.index ["store_id"], name: "index_store_products_on_store_id"
+  end
+
+  create_table "store_staffs", force: :cascade do |t|
+    t.bigint "store_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_store_staffs_on_store_id"
+    t.index ["user_id"], name: "index_store_staffs_on_user_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -100,8 +117,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_183932) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "role"
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "customers", "users"
@@ -113,9 +133,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_183932) do
   add_foreign_key "product_items", "products"
   add_foreign_key "product_items", "stores"
   add_foreign_key "product_items", "users"
-  add_foreign_key "products", "stores"
   add_foreign_key "products", "users"
   add_foreign_key "store_products", "products"
   add_foreign_key "store_products", "stores"
+  add_foreign_key "store_staffs", "stores"
+  add_foreign_key "store_staffs", "users"
   add_foreign_key "stores", "users"
 end

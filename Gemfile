@@ -38,6 +38,11 @@ gem "annotate", "~> 3.2"
 
 gem "devise", "~> 4.9"
 
+gem 'kaminari'
+gem 'bootstrap5-kaminari-views'
+
+gem "dartsass-sprockets", "3.0.0"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

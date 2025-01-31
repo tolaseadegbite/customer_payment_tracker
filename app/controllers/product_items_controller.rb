@@ -61,7 +61,7 @@ class ProductItemsController < ApplicationController
     private
     
     def product_item_params
-      params.require(:product_item).permit(:name, :description, :quantity, :unit_price, :payment_status, :product_id, payments_attributes: [:id, :_destroy, :amount, :date, :user_id])
+      params.require(:product_item).permit(:name, :description, :quantity, :unit_price, :payment_status, :product_id, :store_id, payments_attributes: [:id, :_destroy, :amount, :date, :user_id])
     end
 
     # def decrement_quantity(old_quantity)

@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root "customers#index"
+  
   devise_for :users
-
-  # get 'search', to: "customers#search"
 
   get '/search', to: 'search#index'
   

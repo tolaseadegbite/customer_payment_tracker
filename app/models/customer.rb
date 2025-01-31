@@ -25,24 +25,27 @@ class Customer < ApplicationRecord
   has_many :product_item_dates, dependent: :destroy  
   
   has_many :product_items, through: :product_item_dates
+  
+  paginates_per 8
 
-
-  scope :ordered, -> { order(created_at: :desc) }
+  scope :ordered, -> { order(id: :desc) }
 
   scope :namee, -> (name) { where("lower(name) like ?", "%#{name.downcase}%") }
 
   # scope :total_outstanding, -> { where(total_unpaid > 0) }
 
-
+  # tatal amount of purchased products
   def total_price
     product_items.sum(&:total_price)
   end
 
+  # customer debt
   def unpaid
     # product_items.where(payment_status: 'unpaid').sum(&:total_price)
     product_items.sum(&:outstanding_price)
   end
 
+  # total amount paid by customer
   def paid
     total_paid = total_price - unpaid
   end

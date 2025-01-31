@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
     before_action :set_stores, only: [:new, :edit, :update]
 
     def index
-        @products = Product.all
+        @products = Product.ordered
     end
 
     def show
@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
 
     def destroy
         @product.destroy
-        flash[:notice] = "Product has been successfully destroyed"
+        redirect_to products_url, notice: "Product has been successfully destroyed"
     end
 
     private
@@ -52,6 +52,6 @@ class ProductsController < ApplicationController
         end
 
         def set_stores
-            @stores = current_user.stores.order(:name)
+            @stores = Store.all.pluck(:name, :id)
         end
 end

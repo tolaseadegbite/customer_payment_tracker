@@ -3,18 +3,15 @@
 
   <%= f.error_notification %>
 
-  <%#= f.input :name, wrapper_html: { class: "line-item__name" }, placeholder: "Enter product name", label: false, input_html: { autofocus: true } %>
   <span data-controller="tom-select">
     <%= f.input :product_id, as: :select, collection: Product.order(:name), label_method: :name, wrapper_html: { class: "line-item__name" }, input_html: { placeholder: "Select store products", id: "select-products" }, label: false %>
-
-    <%#= f.collection_select :product_id, Product.all, :id, :name, { prompt: "Select product" }, wrapper_html: { class: "line-item__name" }, input_html: { placeholder: "Select store products", id: "select-products" }, label: false %>
   </span>
   <%= f.input :quantity, wrapper_html: { class: "line-item__quantity" }, label: false, placeholder: "Quantity" %>
-  <%#= f.input :unit_price, wrapper_html: { class: "line-item__price" }, placeholder: "Price", label: false %>
-    <%= f.input :payment_status, as: :select, collection: ProductItem.payment_statuses.keys, include_blank: "Select payment status", wrapper_html: { class: "line-item__price" }, label: false %>
-  <div class="d-block w-100">
-    <%#= f.input :description, wrapper_html: { class: "line-item__description mb-2" }, placeholder: "Product description", label: false %>
-  </div>
+  
+  <%= f.input :payment_status, as: :select, collection: ProductItem.payment_statuses.keys, include_blank: "Select payment status", wrapper_html: { class: "line-item__price" }, label: false %>
+
+  <%= f.input :store_id, as: :select, collection: Store.all.pluck(:name, :id), include_blank: "Available in all stores", wrapper_html: { class: "line-item__quantity" }, label: false %>
+  
 
   <div class="d-block w-100 mt-3">
     <h6><small>Enter amount paid below for customers still making payment:</small></h6>
@@ -28,11 +25,11 @@
     <% end %>
   </template>
   
-  <%# unless f.object.new_record? %>
+  <% unless f.object.new_record? %>
     <%= f.fields_for :payments do |payment_fields| %>
       <%= render "product_items/product_item_payment_form", f: payment_fields %>
     <% end %>
-  <%# end %>
+  <% end %>
 
   <!-- Inserted elements will be injected before that target. -->
   <div data-nested-form-target="target"></div>

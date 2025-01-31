@@ -5,9 +5,9 @@
     <%= f.input :name, input_html: { autofocus: true, placeholder: 'Store name' }, label: false %>
 
     <% unless f.object.new_record? %>
-        Add products to your store. <small class="text-info">You must have your products created before selection.<%= link_to 'Click here', new_product_path, target: '_blank' %> to create new product.</small>
+        Add products to your store. <small class="text-info">You must have your products created before selection. <%= link_to 'Click here', new_product_path, target: '_blank' %> to create new product.</small>
         <div data-controller="tom-select">
-                <%= f.input :product_ids, as: :select, collection: (@products), label_method: :name, input_html: { placeholder: "Select store products", multiple: true, id: "select-products", class: 'products' }, label: false %>
+            <%= f.input :product_ids, as: :select, collection: (@products), label_method: :name, input_html: { placeholder: "Select store products", multiple: true, id: "select-products", class: 'products' }, label: false %>
         </div>
     <% end %>
 

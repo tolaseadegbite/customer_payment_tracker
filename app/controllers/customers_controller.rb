@@ -2,12 +2,8 @@ class CustomersController < ApplicationController
     before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
     def index
-        @customers = current_user.customers.ordered
+        @customers = Customer.all.ordered.page(params[:page])
     end
-    
-    # def search
-    #     @customers = current_user.customers.where("lower(name) LIKE ?", "%" + params[:q].downcase + "%")
-    # end
 
     def show
         @product_item_dates = @customer.product_item_dates.includes(:product_items).ordered

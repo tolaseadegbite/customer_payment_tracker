@@ -21,3 +21,14 @@
     //   gap: var(--space-xs);
     // }
   }
+
+.active > .page-link {
+  background-color: purple;
+}
+
+.page-link {
+  color: purple;
+  &:hover, &:focus {
+    color: purple;
+  }
+}

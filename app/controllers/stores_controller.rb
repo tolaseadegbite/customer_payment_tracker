@@ -52,6 +52,7 @@ class StoresController < ApplicationController
         end
 
         def set_products
-            @products ||= Product.where(store_id: @store.id).order(:name) + Product.where(store_id: nil)
+            # @products ||= Product.where(store: @store).order(:name) + Product.where(store_id: nil)
+            @products ||= Product.all
         end
 end
