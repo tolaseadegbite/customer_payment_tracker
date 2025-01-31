@@ -9,7 +9,10 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  role                   :integer
+<<<<<<< HEAD
 #  username               :string
+=======
+>>>>>>> c4b797f8e412fc01ec60384b61439adf3303a238
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -25,6 +28,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+<<<<<<< HEAD
   has_many :stores, dependent: :destroy
   has_many :customers, dependent: :destroy
   has_many :product_item_dates, dependent: :destroy
@@ -38,4 +42,17 @@ class User < ApplicationRecord
     'Super Admin': 1,
     'Admin': 2
   }
+=======
+  has_many :stores
+  has_many :customers
+  has_many :product_item_dates
+  has_many :products
+  has_many :product_items
+  has_many :payments
+
+  enum :role, { 
+        admin: 0,
+        editor: 1,
+   }
+>>>>>>> c4b797f8e412fc01ec60384b61439adf3303a238
 end

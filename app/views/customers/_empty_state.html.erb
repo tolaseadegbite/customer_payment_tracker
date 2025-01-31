@@ -3,5 +3,5 @@
     You don't have any customers yet!
   </p>
 
-  <%= link_to "Add customer", new_customer_path, class: "butn butn--primary" %>
+  <%= link_to "Add customer", new_customer_path, class: "butn butn--primary" if admin?(current_user) %>
 </div>

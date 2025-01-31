@@ -1,7 +1,7 @@
 <main class="container">
     <div class="header">
         <h1><i class="bi bi-people"></i> Customers</h1>
-        <span><%= link_to "Add customer", new_customer_path, class: "butn butn--primary", data: { turbo_frame: dom_id(Customer.new) } %></span>
+        <span><%= link_to "Add customer", new_customer_path, class: "butn butn--primary", data: { turbo_frame: dom_id(Customer.new) } if authorized_user?(current_user) %></span>
     </div>
 
     <% unless @customers.blank? %>

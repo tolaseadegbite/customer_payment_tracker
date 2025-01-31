@@ -9,7 +9,7 @@
     </h1>
 
     <span>
-      <%= link_to "New date", new_customer_product_item_date_path(@customer), data: { turbo_frame: dom_id(ProductItemDate.new) }, class: "butn butn--primary" %>
+      <%= link_to "New date", new_customer_product_item_date_path(@customer), data: { turbo_frame: dom_id(ProductItemDate.new) }, class: "butn butn--primary" if admin?(current_user) %>
     </span>
   </div>
 

@@ -14,7 +14,13 @@
 #
 # Indexes
 #
+<<<<<<< HEAD
 #  index_products_on_user_id  (user_id)
+=======
+#  index_products_on_name_and_store_id  (name,store_id) UNIQUE
+#  index_products_on_store_id           (store_id)
+#  index_products_on_user_id            (user_id)
+>>>>>>> c4b797f8e412fc01ec60384b61439adf3303a238
 #
 # Foreign Keys
 #
@@ -24,8 +30,13 @@ class Product < ApplicationRecord
 
     before_create :product_code
 
+<<<<<<< HEAD
     validates_presence_of :name
     # validates :store_id, length: { minimum: 1, allow_nil: true }
+=======
+    validates_presence_of :name, uniqueness: {  scope: :store_id, message: "Product name has to be unique" }
+    validates :store_id, length: { minimum: 1, allow_nil: true }
+>>>>>>> c4b797f8e412fc01ec60384b61439adf3303a238
     validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
     validates :unit_price, presence: true, numericality: { greater_than: 0 }
 

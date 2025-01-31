@@ -9,7 +9,10 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  role                   :integer
+<<<<<<< HEAD
 #  username               :string
+=======
+>>>>>>> c4b797f8e412fc01ec60384b61439adf3303a238
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

@@ -1,13 +1,15 @@
 <%= turbo_frame_tag customer do %>
   <div class="customer col-12 justify-content-between d-flex align-items-center">
     <%= link_to customer.name, customer_path(customer), data: { turbo_frame: "_top" } %>
-    <span class="customer__actions">
-      <%= link_to customer_path(customer), data: { "turbo-method": :delete, turbo_frame: "_top", turbo_confirm: "Are you sure?" }, class: "butn butn--light" do %>
-        <%= image_tag "delete.png", size: "25" %>
-      <% end %>
-      <%= link_to edit_customer_path(customer), class: "butn butn--light" do %>
-        <%= image_tag "edit.png", size: "25" %>
-      <% end %>
-    </span>
+    <% if authorized_user?(current_user) %>
+      <span class="customer__actions">
+        <%= link_to customer_path(customer), data: { "turbo-method": :delete, turbo_frame: "_top", turbo_confirm: "Are you sure?" }, class: "butn butn--light" do %>
+          <%= image_tag "delete.png", size: "25" %>
+        <% end %>
+        <%= link_to edit_customer_path(customer), class: "butn butn--light" do %>
+          <%= image_tag "edit.png", size: "25" %>
+        <% end %>
+      </span>
+    <% end %>
   </div>
 <% end %>

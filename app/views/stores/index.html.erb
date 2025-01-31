@@ -1,7 +1,7 @@
 <main class="container">
     <div class="header">
         <h1><i class="bi bi-shop"></i> Stores</h1>
-        <span><%= link_to "Create store", new_store_path, class: "butn butn--primary" %></span>
+            <span><%= link_to "Create store", new_store_path, class: "butn butn--primary" if admin?(current_user) %></span>
     </div>
 
     <% if @stores.none? %>

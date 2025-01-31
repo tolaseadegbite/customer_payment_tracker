@@ -8,12 +8,14 @@
       <%= @product.name %>
     </h1>
 
-    <span>
-      <div class="btn-group border" role="group" aria-label="Basic example">
-        <%= link_to "Edit", edit_product_path(@product), class: "btn btn-light" %>
-        <%= link_to "Delete", @product, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
-      </div>
-    </span>
+    <% if authorized_user?(current_user) %>
+      <span>
+        <div class="btn-group border" role="group" aria-label="Basic example">
+          <%= link_to "Edit", edit_product_path(@product), class: "btn btn-light" %>
+          <%= link_to "Delete", @product, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        </div>
+      </span>
+    <% end %>
   </div>
 
   <div class="product-data my-5">

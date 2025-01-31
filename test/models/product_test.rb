@@ -14,7 +14,13 @@
 #
 # Indexes
 #
+<<<<<<< HEAD
 #  index_products_on_user_id  (user_id)
+=======
+#  index_products_on_name_and_store_id  (name,store_id) UNIQUE
+#  index_products_on_store_id           (store_id)
+#  index_products_on_user_id            (user_id)
+>>>>>>> c4b797f8e412fc01ec60384b61439adf3303a238
 #
 # Foreign Keys
 #
